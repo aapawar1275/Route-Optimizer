@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_26e6cef54402db0801de4b7b83b1358c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-ant-path@1.1.2/dist/leaflet-ant-path.min.js"></script>
+</head>
+<body>
+    
+    
+    <div style="
+        position: fixed;
+        top: 10px; left: 50%; transform: translateX(-50%);
+        z-index: 1000;
+        background: rgba(13, 17, 46, 0.92);
+        color: #ffffff;
+        padding: 10px 24px;
+        border-radius: 12px;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        border: 1px solid rgba(99,179,237,0.4);
+    ">
+        🗺️ Hill Climbing Route Optimizer &nbsp;|&nbsp;
+        <span style="color:#63b3ed;">Total Distance: 5429.0 km</span>
+    </div>
+    
+    
+    <div style="
+        position: fixed;
+        bottom: 30px; right: 20px;
+        z-index: 1000;
+        background: rgba(13, 17, 46, 0.88);
+        color: #e2e8f0;
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 13px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+        border: 1px solid rgba(99,179,237,0.3);
+        min-width: 200px;
+    ">
+        <div style="font-weight:700;font-size:14px;margin-bottom:8px;color:#63b3ed;">
+            📊 Route Summary
+        </div>
+        <div>🏙️ Cities: <b>10</b></div>
+        <div>📏 Distance: <b>5429.0 km</b></div>
+        <div style="margin-top:8px;font-size:11px;color:#94a3b8;">
+            — Optimized Route &nbsp; - - Return Leg
+        </div>
+    </div>
+    
+    
+            <div class="folium-map" id="map_26e6cef54402db0801de4b7b83b1358c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_26e6cef54402db0801de4b7b83b1358c = L.map(
+                "map_26e6cef54402db0801de4b7b83b1358c",
+                {
+                    center: [20.93314, 78.26989],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_c12f0ecd6ee084f17209199ad93dc68a = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_c12f0ecd6ee084f17209199ad93dc68a.addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var marker_4508f6e3feacd15d98400d49a6615ce2 = L.marker(
+                [17.385, 78.4867],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_a75280365b6b1850bab74be16bd61aab = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background:#4ade80;\n            color:#000;\n            font-weight:bold;\n            border-radius:50%;\n            width:28px; height:28px;\n            display:flex; align-items:center; justify-content:center;\n            font-size:12px;\n            border:2px solid #fff;\n            box-shadow:0 2px 6px rgba(0,0,0,0.4);\n        \"\u003e1\u003c/div\u003e\n        ",
+  "iconSize": [28, 28],
+  "iconAnchor": [14, 14],
+  "className": "empty",
+});
+        
+    
+        var popup_70094b74e92165457597b2c9ac8bbb2a = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_c0ce595248b75e9fccc9cd29bc3cf506 = $(`<div id="html_c0ce595248b75e9fccc9cd29bc3cf506" style="width: 100.0%; height: 100.0%;"><b>Hyderabad</b><br>Lat: 17.3850°<br>Lon: 78.4867°<br>Stop #1</div>`)[0];
+                popup_70094b74e92165457597b2c9ac8bbb2a.setContent(html_c0ce595248b75e9fccc9cd29bc3cf506);
+            
+        
+
+        marker_4508f6e3feacd15d98400d49a6615ce2.bindPopup(popup_70094b74e92165457597b2c9ac8bbb2a)
+        ;
+
+        
+    
+    
+            marker_4508f6e3feacd15d98400d49a6615ce2.bindTooltip(
+                `<div>
+                     #1 Hyderabad
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4508f6e3feacd15d98400d49a6615ce2.setIcon(div_icon_a75280365b6b1850bab74be16bd61aab);
+            
+    
+            var marker_3029e5e2d900fffd25c10ca917c1e1c0 = L.marker(
+                [17.635, 78.4867],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_201c19bfa55b0656f159a953d20ece35 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:600;color:#1a202c;background:rgba(255,255,255,0.85);padding:2px 5px;border-radius:4px;white-space:nowrap;\"\u003eHyderabad\u003c/div\u003e",
+  "iconSize": [120, 20],
+  "iconAnchor": [60, 0],
+  "className": "empty",
+});
+        
+    
+                marker_3029e5e2d900fffd25c10ca917c1e1c0.setIcon(div_icon_201c19bfa55b0656f159a953d20ece35);
+            
+    
+            var marker_46503d9af0586fc6534c482e3b0c9c64 = L.marker(
+                [12.9716, 77.5946],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_a9d3ecc7dca44f1488c6fc7efc508f72 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background:#f59e0b;\n            color:#000;\n            font-weight:bold;\n            border-radius:50%;\n            width:28px; height:28px;\n            display:flex; align-items:center; justify-content:center;\n            font-size:12px;\n            border:2px solid #fff;\n            box-shadow:0 2px 6px rgba(0,0,0,0.4);\n        \"\u003e2\u003c/div\u003e\n        ",
+  "iconSize": [28, 28],
+  "iconAnchor": [14, 14],
+  "className": "empty",
+});
+        
+    
+        var popup_42dc87d01ee18fbe77424023db5c6456 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_2b2734d2a7cc5f0ac24df07f474020d0 = $(`<div id="html_2b2734d2a7cc5f0ac24df07f474020d0" style="width: 100.0%; height: 100.0%;"><b>Bengaluru</b><br>Lat: 12.9716°<br>Lon: 77.5946°<br>Stop #2</div>`)[0];
+                popup_42dc87d01ee18fbe77424023db5c6456.setContent(html_2b2734d2a7cc5f0ac24df07f474020d0);
+            
+        
+
+        marker_46503d9af0586fc6534c482e3b0c9c64.bindPopup(popup_42dc87d01ee18fbe77424023db5c6456)
+        ;
+
+        
+    
+    
+            marker_46503d9af0586fc6534c482e3b0c9c64.bindTooltip(
+                `<div>
+                     #2 Bengaluru
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_46503d9af0586fc6534c482e3b0c9c64.setIcon(div_icon_a9d3ecc7dca44f1488c6fc7efc508f72);
+            
+    
+            var marker_4710acf039b320ded8b4ce6307e99bd9 = L.marker(
+                [13.2216, 77.5946],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_73ef8fc5888fb2d58f7c0b87cbc1d253 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:600;color:#1a202c;background:rgba(255,255,255,0.85);padding:2px 5px;border-radius:4px;white-space:nowrap;\"\u003eBengaluru\u003c/div\u003e",
+  "iconSize": [120, 20],
+  "iconAnchor": [60, 0],
+  "className": "empty",
+});
+        
+    
+                marker_4710acf039b320ded8b4ce6307e99bd9.setIcon(div_icon_73ef8fc5888fb2d58f7c0b87cbc1d253);
+            
+    
+            var marker_02eb8708b1e36840d6f6c6e91671c88c = L.marker(
+                [13.0827, 80.2707],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_1458a5dcbcf4f3ccec7c175f326ffef0 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background:#60a5fa;\n            color:#000;\n            font-weight:bold;\n            border-radius:50%;\n            width:28px; height:28px;\n            display:flex; align-items:center; justify-content:center;\n            font-size:12px;\n            border:2px solid #fff;\n            box-shadow:0 2px 6px rgba(0,0,0,0.4);\n        \"\u003e3\u003c/div\u003e\n        ",
+  "iconSize": [28, 28],
+  "iconAnchor": [14, 14],
+  "className": "empty",
+});
+        
+    
+        var popup_5660803c663bcb466b4fb5484070a8c7 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_60029d0a17b7e8e107b14c4071b2904c = $(`<div id="html_60029d0a17b7e8e107b14c4071b2904c" style="width: 100.0%; height: 100.0%;"><b>Chennai</b><br>Lat: 13.0827°<br>Lon: 80.2707°<br>Stop #3</div>`)[0];
+                popup_5660803c663bcb466b4fb5484070a8c7.setContent(html_60029d0a17b7e8e107b14c4071b2904c);
+            
+        
+
+        marker_02eb8708b1e36840d6f6c6e91671c88c.bindPopup(popup_5660803c663bcb466b4fb5484070a8c7)
+        ;
+
+        
+    
+    
+            marker_02eb8708b1e36840d6f6c6e91671c88c.bindTooltip(
+                `<div>
+                     #3 Chennai
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_02eb8708b1e36840d6f6c6e91671c88c.setIcon(div_icon_1458a5dcbcf4f3ccec7c175f326ffef0);
+            
+    
+            var marker_361f4f5abb0613e50d05a663187c451b = L.marker(
+                [13.3327, 80.2707],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_38857112abb80c3ca9571cf004fdf2af = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:600;color:#1a202c;background:rgba(255,255,255,0.85);padding:2px 5px;border-radius:4px;white-space:nowrap;\"\u003eChennai\u003c/div\u003e",
+  "iconSize": [120, 20],
+  "iconAnchor": [60, 0],
+  "className": "empty",
+});
+        
+    
+                marker_361f4f5abb0613e50d05a663187c451b.setIcon(div_icon_38857112abb80c3ca9571cf004fdf2af);
+            
+    
+            var marker_e3cb5da1807ede291b969ea55f18eb31 = L.marker(
+                [22.5726, 88.3639],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_c8cc06a8600b71833b3580553f249657 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background:#f87171;\n            color:#000;\n            font-weight:bold;\n            border-radius:50%;\n            width:28px; height:28px;\n            display:flex; align-items:center; justify-content:center;\n            font-size:12px;\n            border:2px solid #fff;\n            box-shadow:0 2px 6px rgba(0,0,0,0.4);\n        \"\u003e4\u003c/div\u003e\n        ",
+  "iconSize": [28, 28],
+  "iconAnchor": [14, 14],
+  "className": "empty",
+});
+        
+    
+        var popup_6dc1e1977aaf9e42e570fc3195ebfae9 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_4d95ffa20cdd47eec3af8b41353a76a9 = $(`<div id="html_4d95ffa20cdd47eec3af8b41353a76a9" style="width: 100.0%; height: 100.0%;"><b>Kolkata</b><br>Lat: 22.5726°<br>Lon: 88.3639°<br>Stop #4</div>`)[0];
+                popup_6dc1e1977aaf9e42e570fc3195ebfae9.setContent(html_4d95ffa20cdd47eec3af8b41353a76a9);
+            
+        
+
+        marker_e3cb5da1807ede291b969ea55f18eb31.bindPopup(popup_6dc1e1977aaf9e42e570fc3195ebfae9)
+        ;
+
+        
+    
+    
+            marker_e3cb5da1807ede291b969ea55f18eb31.bindTooltip(
+                `<div>
+                     #4 Kolkata
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e3cb5da1807ede291b969ea55f18eb31.setIcon(div_icon_c8cc06a8600b71833b3580553f249657);
+            
+    
+            var marker_9728a9ec5ca71df6592c0d105893da01 = L.marker(
+                [22.8226, 88.3639],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_f255c040f0cbbee0105bc69ef0e549c9 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:600;color:#1a202c;background:rgba(255,255,255,0.85);padding:2px 5px;border-radius:4px;white-space:nowrap;\"\u003eKolkata\u003c/div\u003e",
+  "iconSize": [120, 20],
+  "iconAnchor": [60, 0],
+  "className": "empty",
+});
+        
+    
+                marker_9728a9ec5ca71df6592c0d105893da01.setIcon(div_icon_f255c040f0cbbee0105bc69ef0e549c9);
+            
+    
+            var marker_b1e1421a6de998e8f10e27bb832c798a = L.marker(
+                [26.8467, 80.9462],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_280b617f05ed47d1bd7a7a21cd71379e = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background:#a78bfa;\n            color:#000;\n            font-weight:bold;\n            border-radius:50%;\n            width:28px; height:28px;\n            display:flex; align-items:center; justify-content:center;\n            font-size:12px;\n            border:2px solid #fff;\n            box-shadow:0 2px 6px rgba(0,0,0,0.4);\n        \"\u003e5\u003c/div\u003e\n        ",
+  "iconSize": [28, 28],
+  "iconAnchor": [14, 14],
+  "className": "empty",
+});
+        
+    
+        var popup_945082692bd908a690b62f45dbcf53bb = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_20386e9f185565331dbd9ebb444f63b5 = $(`<div id="html_20386e9f185565331dbd9ebb444f63b5" style="width: 100.0%; height: 100.0%;"><b>Lucknow</b><br>Lat: 26.8467°<br>Lon: 80.9462°<br>Stop #5</div>`)[0];
+                popup_945082692bd908a690b62f45dbcf53bb.setContent(html_20386e9f185565331dbd9ebb444f63b5);
+            
+        
+
+        marker_b1e1421a6de998e8f10e27bb832c798a.bindPopup(popup_945082692bd908a690b62f45dbcf53bb)
+        ;
+
+        
+    
+    
+            marker_b1e1421a6de998e8f10e27bb832c798a.bindTooltip(
+                `<div>
+                     #5 Lucknow
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b1e1421a6de998e8f10e27bb832c798a.setIcon(div_icon_280b617f05ed47d1bd7a7a21cd71379e);
+            
+    
+            var marker_6eea247905dd77fc3f985b51e5518274 = L.marker(
+                [27.0967, 80.9462],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_ee2b6fb335c2ec2fec488ca28c4b0bce = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:600;color:#1a202c;background:rgba(255,255,255,0.85);padding:2px 5px;border-radius:4px;white-space:nowrap;\"\u003eLucknow\u003c/div\u003e",
+  "iconSize": [120, 20],
+  "iconAnchor": [60, 0],
+  "className": "empty",
+});
+        
+    
+                marker_6eea247905dd77fc3f985b51e5518274.setIcon(div_icon_ee2b6fb335c2ec2fec488ca28c4b0bce);
+            
+    
+            var marker_c5be61ee067a99a74a4d35ebee91db49 = L.marker(
+                [28.7041, 77.1025],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_4cb71f060f6f49bcf8f09135868dcb8f = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background:#34d399;\n            color:#000;\n            font-weight:bold;\n            border-radius:50%;\n            width:28px; height:28px;\n            display:flex; align-items:center; justify-content:center;\n            font-size:12px;\n            border:2px solid #fff;\n            box-shadow:0 2px 6px rgba(0,0,0,0.4);\n        \"\u003e6\u003c/div\u003e\n        ",
+  "iconSize": [28, 28],
+  "iconAnchor": [14, 14],
+  "className": "empty",
+});
+        
+    
+        var popup_4a29c1a8c2c0de07bf7909e5bbdc8314 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_97e0d574363ac23ffa2bba28b87f536c = $(`<div id="html_97e0d574363ac23ffa2bba28b87f536c" style="width: 100.0%; height: 100.0%;"><b>Delhi</b><br>Lat: 28.7041°<br>Lon: 77.1025°<br>Stop #6</div>`)[0];
+                popup_4a29c1a8c2c0de07bf7909e5bbdc8314.setContent(html_97e0d574363ac23ffa2bba28b87f536c);
+            
+        
+
+        marker_c5be61ee067a99a74a4d35ebee91db49.bindPopup(popup_4a29c1a8c2c0de07bf7909e5bbdc8314)
+        ;
+
+        
+    
+    
+            marker_c5be61ee067a99a74a4d35ebee91db49.bindTooltip(
+                `<div>
+                     #6 Delhi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c5be61ee067a99a74a4d35ebee91db49.setIcon(div_icon_4cb71f060f6f49bcf8f09135868dcb8f);
+            
+    
+            var marker_8841ddcf8f8e0f874e15c127d2423fed = L.marker(
+                [28.9541, 77.1025],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_92b183406022f47eb4b874ee5a04016a = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:600;color:#1a202c;background:rgba(255,255,255,0.85);padding:2px 5px;border-radius:4px;white-space:nowrap;\"\u003eDelhi\u003c/div\u003e",
+  "iconSize": [120, 20],
+  "iconAnchor": [60, 0],
+  "className": "empty",
+});
+        
+    
+                marker_8841ddcf8f8e0f874e15c127d2423fed.setIcon(div_icon_92b183406022f47eb4b874ee5a04016a);
+            
+    
+            var marker_6c1633bae0ed6636fbb26ea10ab19d1a = L.marker(
+                [26.9124, 75.7873],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_3c4bb8d31ce8d484b1113159f2d9359b = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background:#fb923c;\n            color:#000;\n            font-weight:bold;\n            border-radius:50%;\n            width:28px; height:28px;\n            display:flex; align-items:center; justify-content:center;\n            font-size:12px;\n            border:2px solid #fff;\n            box-shadow:0 2px 6px rgba(0,0,0,0.4);\n        \"\u003e7\u003c/div\u003e\n        ",
+  "iconSize": [28, 28],
+  "iconAnchor": [14, 14],
+  "className": "empty",
+});
+        
+    
+        var popup_527be74d908613b5013a697584a467e0 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_c8b6329f2c95611e0470c3f29392cc4f = $(`<div id="html_c8b6329f2c95611e0470c3f29392cc4f" style="width: 100.0%; height: 100.0%;"><b>Jaipur</b><br>Lat: 26.9124°<br>Lon: 75.7873°<br>Stop #7</div>`)[0];
+                popup_527be74d908613b5013a697584a467e0.setContent(html_c8b6329f2c95611e0470c3f29392cc4f);
+            
+        
+
+        marker_6c1633bae0ed6636fbb26ea10ab19d1a.bindPopup(popup_527be74d908613b5013a697584a467e0)
+        ;
+
+        
+    
+    
+            marker_6c1633bae0ed6636fbb26ea10ab19d1a.bindTooltip(
+                `<div>
+                     #7 Jaipur
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6c1633bae0ed6636fbb26ea10ab19d1a.setIcon(div_icon_3c4bb8d31ce8d484b1113159f2d9359b);
+            
+    
+            var marker_ac4cbdbb3f855d0c80d7a6ef529aec7b = L.marker(
+                [27.1624, 75.7873],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_19b34b514085443930c8c9cfb934b382 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:600;color:#1a202c;background:rgba(255,255,255,0.85);padding:2px 5px;border-radius:4px;white-space:nowrap;\"\u003eJaipur\u003c/div\u003e",
+  "iconSize": [120, 20],
+  "iconAnchor": [60, 0],
+  "className": "empty",
+});
+        
+    
+                marker_ac4cbdbb3f855d0c80d7a6ef529aec7b.setIcon(div_icon_19b34b514085443930c8c9cfb934b382);
+            
+    
+            var marker_05b27ba3cbb3841602ce4f3ab0113d6b = L.marker(
+                [23.2599, 77.4126],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_d53f2f9030bedeefa263013ea6e6090c = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background:#e879f9;\n            color:#000;\n            font-weight:bold;\n            border-radius:50%;\n            width:28px; height:28px;\n            display:flex; align-items:center; justify-content:center;\n            font-size:12px;\n            border:2px solid #fff;\n            box-shadow:0 2px 6px rgba(0,0,0,0.4);\n        \"\u003e8\u003c/div\u003e\n        ",
+  "iconSize": [28, 28],
+  "iconAnchor": [14, 14],
+  "className": "empty",
+});
+        
+    
+        var popup_6157d73321ad09be7eb457b1732a0a9a = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_43f05583a92cfd62b89ba2869ce3b8a8 = $(`<div id="html_43f05583a92cfd62b89ba2869ce3b8a8" style="width: 100.0%; height: 100.0%;"><b>Bhopal</b><br>Lat: 23.2599°<br>Lon: 77.4126°<br>Stop #8</div>`)[0];
+                popup_6157d73321ad09be7eb457b1732a0a9a.setContent(html_43f05583a92cfd62b89ba2869ce3b8a8);
+            
+        
+
+        marker_05b27ba3cbb3841602ce4f3ab0113d6b.bindPopup(popup_6157d73321ad09be7eb457b1732a0a9a)
+        ;
+
+        
+    
+    
+            marker_05b27ba3cbb3841602ce4f3ab0113d6b.bindTooltip(
+                `<div>
+                     #8 Bhopal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_05b27ba3cbb3841602ce4f3ab0113d6b.setIcon(div_icon_d53f2f9030bedeefa263013ea6e6090c);
+            
+    
+            var marker_cfdebc5bd4882221578d03d42a47d63e = L.marker(
+                [23.5099, 77.4126],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_fc4bc4252dd2bc92380d7d582607c480 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:600;color:#1a202c;background:rgba(255,255,255,0.85);padding:2px 5px;border-radius:4px;white-space:nowrap;\"\u003eBhopal\u003c/div\u003e",
+  "iconSize": [120, 20],
+  "iconAnchor": [60, 0],
+  "className": "empty",
+});
+        
+    
+                marker_cfdebc5bd4882221578d03d42a47d63e.setIcon(div_icon_fc4bc4252dd2bc92380d7d582607c480);
+            
+    
+            var marker_533b3a26cb072653f405ebb54f64fba4 = L.marker(
+                [19.076, 72.8777],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_e154980f87475686b976386df67efaaa = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background:#4ade80;\n            color:#000;\n            font-weight:bold;\n            border-radius:50%;\n            width:28px; height:28px;\n            display:flex; align-items:center; justify-content:center;\n            font-size:12px;\n            border:2px solid #fff;\n            box-shadow:0 2px 6px rgba(0,0,0,0.4);\n        \"\u003e9\u003c/div\u003e\n        ",
+  "iconSize": [28, 28],
+  "iconAnchor": [14, 14],
+  "className": "empty",
+});
+        
+    
+        var popup_478bd5083e82cdb364829894044d4434 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_d98858924667473e8833d71ec12cfc73 = $(`<div id="html_d98858924667473e8833d71ec12cfc73" style="width: 100.0%; height: 100.0%;"><b>Mumbai</b><br>Lat: 19.0760°<br>Lon: 72.8777°<br>Stop #9</div>`)[0];
+                popup_478bd5083e82cdb364829894044d4434.setContent(html_d98858924667473e8833d71ec12cfc73);
+            
+        
+
+        marker_533b3a26cb072653f405ebb54f64fba4.bindPopup(popup_478bd5083e82cdb364829894044d4434)
+        ;
+
+        
+    
+    
+            marker_533b3a26cb072653f405ebb54f64fba4.bindTooltip(
+                `<div>
+                     #9 Mumbai
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_533b3a26cb072653f405ebb54f64fba4.setIcon(div_icon_e154980f87475686b976386df67efaaa);
+            
+    
+            var marker_e1b89152deee34db35fd0974cbb9cb47 = L.marker(
+                [19.326, 72.8777],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_0d934f469bf50bb90506ecb9de701c41 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:600;color:#1a202c;background:rgba(255,255,255,0.85);padding:2px 5px;border-radius:4px;white-space:nowrap;\"\u003eMumbai\u003c/div\u003e",
+  "iconSize": [120, 20],
+  "iconAnchor": [60, 0],
+  "className": "empty",
+});
+        
+    
+                marker_e1b89152deee34db35fd0974cbb9cb47.setIcon(div_icon_0d934f469bf50bb90506ecb9de701c41);
+            
+    
+            var marker_8aa4b8119b12c7ca641f4f0817dcd096 = L.marker(
+                [18.5204, 73.8567],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_97c7a95187be484c5b61eb14af7e67f5 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background:#f59e0b;\n            color:#000;\n            font-weight:bold;\n            border-radius:50%;\n            width:28px; height:28px;\n            display:flex; align-items:center; justify-content:center;\n            font-size:12px;\n            border:2px solid #fff;\n            box-shadow:0 2px 6px rgba(0,0,0,0.4);\n        \"\u003e10\u003c/div\u003e\n        ",
+  "iconSize": [28, 28],
+  "iconAnchor": [14, 14],
+  "className": "empty",
+});
+        
+    
+        var popup_1f053dde2d4d38252c470987c302c931 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_63ec853bcc665114fb21722a82b22f6b = $(`<div id="html_63ec853bcc665114fb21722a82b22f6b" style="width: 100.0%; height: 100.0%;"><b>Pune</b><br>Lat: 18.5204°<br>Lon: 73.8567°<br>Stop #10</div>`)[0];
+                popup_1f053dde2d4d38252c470987c302c931.setContent(html_63ec853bcc665114fb21722a82b22f6b);
+            
+        
+
+        marker_8aa4b8119b12c7ca641f4f0817dcd096.bindPopup(popup_1f053dde2d4d38252c470987c302c931)
+        ;
+
+        
+    
+    
+            marker_8aa4b8119b12c7ca641f4f0817dcd096.bindTooltip(
+                `<div>
+                     #10 Pune
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8aa4b8119b12c7ca641f4f0817dcd096.setIcon(div_icon_97c7a95187be484c5b61eb14af7e67f5);
+            
+    
+            var marker_e4c6cea2634a414cc7d9d9b3860ed703 = L.marker(
+                [18.7704, 73.8567],
+                {
+}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            var div_icon_798c5128563b4e37797fd8695b318c5a = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:600;color:#1a202c;background:rgba(255,255,255,0.85);padding:2px 5px;border-radius:4px;white-space:nowrap;\"\u003ePune\u003c/div\u003e",
+  "iconSize": [120, 20],
+  "iconAnchor": [60, 0],
+  "className": "empty",
+});
+        
+    
+                marker_e4c6cea2634a414cc7d9d9b3860ed703.setIcon(div_icon_798c5128563b4e37797fd8695b318c5a);
+            
+    
+            ant_path_1f1d8c8554b10184b135a024c9ff8645 = L.polyline.antPath(
+              [[17.385, 78.4867], [12.9716, 77.5946], [13.0827, 80.2707], [22.5726, 88.3639], [26.8467, 80.9462], [28.7041, 77.1025], [26.9124, 75.7873], [23.2599, 77.4126], [19.076, 72.8777], [18.5204, 73.8567]],
+              {
+  "stroke": true,
+  "color": "#3b82f6",
+  "weight": 4,
+  "opacity": 0.85,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "#3b82f6",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            ant_path_1f1d8c8554b10184b135a024c9ff8645.bindTooltip(
+                `<div>
+                     Optimized Route
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_29096d8869e45d8f4a5a958babacbfa5 = L.polyline.antPath(
+              [[18.5204, 73.8567], [17.385, 78.4867]],
+              {
+  "stroke": true,
+  "color": "#f59e0b",
+  "weight": 3,
+  "opacity": 0.75,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+5,
+15,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "#f59e0b",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 1000,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            ant_path_29096d8869e45d8f4a5a958babacbfa5.bindTooltip(
+                `<div>
+                     Return to Start
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f88e2752c6d27c0a6bf218b35e90ab66 = L.polyline(
+                [[17.385, 78.4867], [12.9716, 77.5946], [13.0827, 80.2707], [22.5726, 88.3639], [26.8467, 80.9462], [28.7041, 77.1025], [26.9124, 75.7873], [23.2599, 77.4126], [19.076, 72.8777], [18.5204, 73.8567], [17.385, 78.4867]],
+                {"bubblingMouseEvents": true, "color": "#94a3b8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#94a3b8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.3, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_26e6cef54402db0801de4b7b83b1358c);
+        
+    
+            map_26e6cef54402db0801de4b7b83b1358c.fitBounds(
+                [[12.4716, 72.3777], [29.2041, 88.8639]],
+                {}
+            );
+        
+</script>
+</html>
